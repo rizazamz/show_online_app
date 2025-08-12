@@ -1,0 +1,39 @@
+name: show_online_app
+description: "A new Flutter project."
+
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.8.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  flutter_riverpod: ^3.0.0-dev.17
+  riverpod_annotation: ^3.0.0-dev.17
+  extended_image: ^10.0.1
+  freezed_annotation: ^3.1.0
+  dio: ^5.9.0
+  carousel_slider: ^5.1.1
+  lottie: ^3.3.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  freezed: ^3.1.0
+  riverpod_generator: ^3.0.0-dev.17
+  riverpod_lint: ^3.0.0-dev.17
+  build_runner:
+  custom_lint:
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/lottie/
+    - assets/images/
