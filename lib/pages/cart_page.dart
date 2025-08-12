@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:extended_image/extended_image.dart';
 import 'package:show_online_app/providers/cart_provider.dart';
 import 'package:show_online_app/pages/checkout_page.dart';
+import 'package:lottie/lottie.dart';
+import 'package:show_online_app/widgets/cartitem_card.dart';
 
 class CartPage extends ConsumerWidget {
   const CartPage({super.key});
@@ -13,8 +14,9 @@ class CartPage extends ConsumerWidget {
     final cartNotifier = ref.read(cartNotifierProvider.notifier);
 
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('Keranjang'),
+        title: const Text('Cart'),
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
         elevation: 1,
@@ -25,7 +27,7 @@ class CartPage extends ConsumerWidget {
                 _showClearCartDialog(context, cartNotifier);
               },
               child: const Text(
-                'Hapus Semua',
+                'Delete All',
                 style: TextStyle(color: Colors.red),
               ),
             ),
@@ -41,7 +43,10 @@ class CartPage extends ConsumerWidget {
                     itemCount: cartState.items.length,
                     itemBuilder: (context, index) {
                       final cartItem = cartState.items[index];
-                      return _buildCartItem(context, cartItem, cartNotifier);
+                      return CartItemCard(
+                        cartItem: cartItem,
+                        cartNotifier: cartNotifier,
+                      );
                     },
                   ),
                 ),
@@ -52,169 +57,27 @@ class CartPage extends ConsumerWidget {
   }
 
   Widget _buildEmptyCart() {
-    return const Center(
+    return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(Icons.shopping_cart_outlined, size: 100, color: Colors.grey),
-          SizedBox(height: 16),
-          Text(
-            'Keranjang Kosong',
+          Lottie.asset('assets/empty_cart.json', width: 250, height: 250),
+          const SizedBox(height: 16),
+          const Text(
+            'Cart is Empty',
             style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
               color: Colors.grey,
             ),
           ),
-          SizedBox(height: 8),
-          Text(
-            'Tambahkan produk ke keranjang untuk melanjutkan',
+          const SizedBox(height: 8),
+          const Text(
+            'Add Product to Cart',
             style: TextStyle(fontSize: 16, color: Colors.grey),
             textAlign: TextAlign.center,
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildCartItem(
-    BuildContext context,
-    CartItem cartItem,
-    CartNotifier cartNotifier,
-  ) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 16),
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 5,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Row(
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: ExtendedImage.network(
-              cartItem.product.image ?? '',
-              width: 80,
-              height: 80,
-              fit: BoxFit.cover,
-              cache: true,
-            ),
-          ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  cartItem.product.title ?? '',
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                  ),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  '\$${cartItem.product.price?.toStringAsFixed(2) ?? '0.00'}',
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black26,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        _buildQuantityButton(
-                          icon: Icons.remove,
-                          onPressed: () {
-                            if (cartItem.quantity > 1) {
-                              cartNotifier.updateQuantity(
-                                cartItem.product,
-                                cartItem.quantity - 1,
-                              );
-                            } else {
-                              cartNotifier.removeFromCart(cartItem.product);
-                            }
-                          },
-                        ),
-                        Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 12),
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 8,
-                          ),
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey[300]!),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Text(
-                            cartItem.quantity.toString(),
-                            style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        _buildQuantityButton(
-                          icon: Icons.add,
-                          onPressed: () {
-                            cartNotifier.updateQuantity(
-                              cartItem.product,
-                              cartItem.quantity + 1,
-                            );
-                          },
-                        ),
-                      ],
-                    ),
-                    IconButton(
-                      onPressed: () {
-                        cartNotifier.removeFromCart(cartItem.product);
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Produk dihapus dari keranjang'),
-                            duration: Duration(seconds: 2),
-                          ),
-                        );
-                      },
-                      icon: const Icon(Icons.delete_outline, color: Colors.red),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildQuantityButton({
-    required IconData icon,
-    required VoidCallback onPressed,
-  }) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.blueGrey[900],
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: IconButton(
-        onPressed: onPressed,
-        icon: Icon(icon, color: Colors.white, size: 18),
-        padding: const EdgeInsets.all(8),
-        constraints: const BoxConstraints(minWidth: 36, minHeight: 36),
       ),
     );
   }
@@ -292,14 +155,14 @@ class CartPage extends ConsumerWidget {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Hapus Semua Item'),
+          title: const Text('Delete All Items'),
           content: const Text(
-            'Apakah Anda yakin ingin menghapus semua item dari keranjang?',
+            'Are you sure you want to delete all items from the cart?',
           ),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: const Text('Batal'),
+              child: const Text('Cancel'),
             ),
             TextButton(
               onPressed: () {
@@ -307,12 +170,12 @@ class CartPage extends ConsumerWidget {
                 Navigator.of(context).pop();
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
-                    content: Text('Keranjang telah dikosongkan'),
+                    content: Text('Cart has been cleared'),
                     duration: Duration(seconds: 2),
                   ),
                 );
               },
-              child: const Text('Hapus', style: TextStyle(color: Colors.red)),
+              child: const Text('Delete', style: TextStyle(color: Colors.red)),
             ),
           ],
         );

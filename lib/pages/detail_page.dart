@@ -130,7 +130,7 @@ class DetailPage extends ConsumerWidget {
                             Expanded(
                               child: Text(
                                 product.category?.toString() ??
-                                    'Tidak ada kategori',
+                                    'Nothing category',
                                 style: const TextStyle(color: Colors.black87),
                               ),
                             ),
