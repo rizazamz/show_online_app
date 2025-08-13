@@ -15,7 +15,7 @@ To run this project locally, follow these steps:
 
 2.  **Navigate to the project directory:**
     ```bash
-    cd [project-folder-name]
+    cd show_online_app
     ```
 
 3.  **Install dependencies:**
@@ -29,6 +29,14 @@ To run this project locally, follow these steps:
     ```bash
     flutter run
     ```
+
+---
+
+## 📲 Download the App
+
+You can download the latest `.apk` file for testing directly from the GitHub Releases page.
+
+**[Download App release here](https://github.com/rizazamz/show_online_app/releases/tag/ReleaseApp)**
 
 ---
 
@@ -47,7 +55,7 @@ Here are some screenshots of the application in action.
 This project utilizes a set of modern libraries to achieve its functionality:
 
 * **[flutter_riverpod](https://pub.dev/packages/flutter_riverpod):** For flexible and scalable state management across the application.
+* **[dio](https://pub.dev/packages/dio):** A powerful HTTP client for making REST API calls to fetch product data.
 * **[extended_image](https://pub.dev/packages/extended_image):** An advanced image library for handling image loading, caching, and state changes.
+* **[carousel_slider](https://pub.dev/packages/carousel_slider):** Used for creating the banner carousel on the home page.
 * **[lottie](https://pub.dev/packages/lottie):** Used for integrating high-quality Lottie animations, such as the "empty cart" indicator.
-* **[http](https://pub.dev/packages/http):** (Assumed) For making REST API calls to fetch product data.
-* **[shared_preferences](https://pub.dev/packages/shared_preferences):** (Optional, for persistence) Can be used to save the cart state locally.
