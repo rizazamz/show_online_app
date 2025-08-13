@@ -30,6 +30,7 @@ dev_dependencies:
   riverpod_lint: ^3.0.0-dev.17
   build_runner:
   custom_lint:
+  flutter_launcher_icons: ^0.13.1
 
 flutter:
   uses-material-design: true
@@ -37,3 +38,8 @@ flutter:
   assets:
     - assets/lottie/
     - assets/images/
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/icon.png"

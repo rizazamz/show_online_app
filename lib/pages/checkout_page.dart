@@ -76,7 +76,7 @@ class CheckoutPage extends ConsumerWidget {
           ],
         ),
       ),
-      bottomNavigationBar: _buildCheckoutButton(context),
+      bottomNavigationBar: _buildCheckoutButton(context, ref),
     );
   }
 
@@ -141,7 +141,7 @@ class CheckoutPage extends ConsumerWidget {
     );
   }
 
-  Widget _buildCheckoutButton(BuildContext context) {
+  Widget _buildCheckoutButton(BuildContext context, WidgetRef ref) {
     return Container(
       padding: const EdgeInsets.all(16.0),
       decoration: BoxDecoration(
@@ -156,6 +156,7 @@ class CheckoutPage extends ConsumerWidget {
       ),
       child: ElevatedButton(
         onPressed: () {
+          ref.read(cartNotifierProvider.notifier).clearCart();
           Navigator.of(context).popUntil((route) => route.isFirst);
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(

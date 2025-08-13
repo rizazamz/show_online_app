@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:show_online_app/models/product_model.dart';
 import 'package:extended_image/extended_image.dart';
 
@@ -29,7 +30,12 @@ class BannerCarousel extends StatelessWidget {
                   cache: true,
                   loadStateChanged: (ExtendedImageState state) {
                     if (state.extendedImageLoadState == LoadState.loading) {
-                      return const Center(child: CircularProgressIndicator());
+                      return Center(
+                        child: Lottie.asset(
+                          'assets/lottie/loading.json',
+                          width: 120,
+                        ),
+                      );
                     }
                     return null;
                   },

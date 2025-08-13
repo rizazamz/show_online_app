@@ -61,7 +61,7 @@ class CartPage extends ConsumerWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Lottie.asset('assets/empty_cart.json', width: 250, height: 250),
+          Icon(Icons.shopping_cart_outlined, size: 100, color: Colors.grey),
           const SizedBox(height: 16),
           const Text(
             'Cart is Empty',

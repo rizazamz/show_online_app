@@ -5,6 +5,7 @@ import 'package:show_online_app/providers/cart_provider.dart';
 import 'package:show_online_app/pages/cart_page.dart';
 import 'package:show_online_app/widgets/product_card.dart';
 import 'package:show_online_app/widgets/banner_carousel.dart';
+import 'package:lottie/lottie.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
@@ -147,7 +148,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                   padding: const EdgeInsets.all(8.0),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    childAspectRatio: 0.85,
+                    childAspectRatio: 0.75,
                     crossAxisSpacing: 10,
                     mainAxisSpacing: 10,
                   ),
@@ -161,7 +162,9 @@ class _HomePageState extends ConsumerState<HomePage> {
             ),
           );
         },
-        loading: () => const Center(child: CircularProgressIndicator()),
+        loading: () => Center(
+          child: Lottie.asset('assets/lottie/loading.json', width: 150),
+        ),
         error: (error, stack) => Center(child: Text('Error: $error')),
       ),
     );

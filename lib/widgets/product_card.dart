@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:show_online_app/models/product_model.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:show_online_app/pages/detail_page.dart';
+import 'package:lottie/lottie.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
@@ -32,7 +33,13 @@ class ProductCard extends StatelessWidget {
                 cache: true,
                 loadStateChanged: (ExtendedImageState state) {
                   if (state.extendedImageLoadState == LoadState.loading) {
-                    return const Center(child: CircularProgressIndicator());
+                    // ✨ PERUBAHAN DI SINI
+                    return Center(
+                      child: Lottie.asset(
+                        'assets/lottie/loading.json',
+                        width: 80,
+                      ),
+                    );
                   }
                   return null;
                 },
