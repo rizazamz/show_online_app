@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:show_online_app/providers/cart_provider.dart';
 import 'package:show_online_app/pages/checkout_page.dart';
-import 'package:lottie/lottie.dart';
 import 'package:show_online_app/widgets/cartitem_card.dart';
 
 class CartPage extends ConsumerWidget {

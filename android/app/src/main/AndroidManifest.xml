@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="show_online_app"
+        android:label="Show online"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
