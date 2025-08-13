@@ -1,16 +1,61 @@
-# show_online_app
+# Show Online App (A Flutter E-Commerce Application)
 
-A new Flutter project.
+This is a simple e-commerce application built with Flutter that demonstrates a complete user flow from browsing products to checkout. The app showcases various modern Flutter development practices, including state management with Riverpod, REST API integration, and building a clean, responsive UI.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 🚀 Installation Instructions
 
-A few resources to get you started if this is your first Flutter project:
+To run this project locally, follow these steps:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/rizazamz/show_online_app.git
+    ```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+2.  **Navigate to the project directory:**
+    ```bash
+    cd show_online_app
+    ```
+
+3.  **Install dependencies:**
+    Run the following command to get all the required packages.
+    ```bash
+    flutter pub get
+    ```
+
+4.  **Run the application:**
+    Connect a device or start an emulator, then run:
+    ```bash
+    flutter run
+    ```
+
+---
+
+## 📲 Download the App
+
+You can download the latest `.apk` file for testing directly from the GitHub Releases page.
+
+**[Download App release here](https://github.com/rizazamz/show_online_app/releases/tag/ReleaseApp)**
+
+---
+
+## 📸 Application Screenshots
+
+Here are some screenshots of the application in action.
+
+| Home Page | Detail Page | Cart Page | Checkout Page | Profile Page |
+| :---: | :---: | :---: | :---: | :---: |
+| <img src="https://github.com/user-attachments/assets/0aa8f5ad-3ac0-4cb5-94a5-bb67aff09fb6" width="200" alt="Home Page"> | <img src="https://github.com/user-attachments/assets/fe33b0ff-4a8d-44a9-b7be-e45307d0d82a" width="200" alt="Detail Page"> | <img src="https://github.com/user-attachments/assets/592f1893-0a72-4713-9629-75933a671c85" width="200" alt="Cart Page"> | <img src="https://github.com/user-attachments/assets/990cee25-0cf4-44d9-9584-d349abf923b9" width="200" alt="Checkout Page"> | <img src="https://github.com/user-attachments/assets/3ab655b2-424d-440e-b26b-1ab6fd51f93b" width="200" alt="Profile Page"> |
+
+---
+
+## 📚 Dependencies & Libraries Used
+
+This project utilizes a set of modern libraries to achieve its functionality:
+
+* **[flutter_riverpod](https://pub.dev/packages/flutter_riverpod):** For flexible and scalable state management across the application.
+* **[dio](https://pub.dev/packages/dio):** A powerful HTTP client for making REST API calls to fetch product data.
+* **[extended_image](https://pub.dev/packages/extended_image):** An advanced image library for handling image loading, caching, and state changes.
+* **[carousel_slider](https://pub.dev/packages/carousel_slider):** Used for creating the banner carousel on the home page.
+* **[lottie](https://pub.dev/packages/lottie):** Used for integrating high-quality Lottie animations, such as the "empty cart" indicator.
